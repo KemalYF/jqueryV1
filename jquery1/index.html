@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jquery</title>
+    <style>
+        .merah{
+            color: red;
+        }
+        .biru{
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <p class=”satu” id=”a”>Hello World</p>
+    <h1>Where do want to go?</h1>
+    <h2 class="sample">Travel Destinations</h2>
+    <p>Plan your next adventure</p>
+    <ul id="destinations">
+        <li class="roma">Rome</li>
+        <li>Paris
+            <button class="paris">Klik</button>
+            <button class="hapus">X</button>
+            <button class="hide">Hide</button>
+        </li>
+        <li class='vacation'>Rio
+            <button class="muncul">muncul</button>
+        </li>
+    </ul>
+    <button class="aksi">Aksi</button>
+    <input type="text" class="inputan" value="100">
+
+    <button class="toggle">Toggle</button>
+    <button class="toggle2">Toggle2</button>
+    <button class="toggle3">Toggle3</button>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script>
+        const myFunction = () =>{
+            document.getElementById("a").style.color = "red";
+        }
+
+        $(document).ready(function(){
+            $(".toggle3").on('click', function(){
+                if ($(".roma").hasClass('merah')) {
+                    $(".roma").removeClass('merah');
+                    $(".roma").addClass('biru');
+                } else {
+                    $(".roma").removeClass('biru');
+                    $(".roma").addClass('merah');
+                }
+                // $(".roma").addClass('merah');
+            });
+
+            $(".toggle").on('click', function(){
+                $(".roma").slideToggle();
+            });
+
+            let toggled = false;
+            $(".toggle2").on('click', function() {
+                if (!toggled) {
+                    $("#destinations").animate({
+                        marginLeft: "+=50",
+                        height: "toggle"
+                    }, 1000);
+                } else {
+                    $("#destinations").animate({
+                        marginLeft: "-=50",
+                        height: "toggle"
+                    }, 1000);
+                }
+                toggled = !toggled;
+            });
+            
+            $(".paris").on('click', function(){
+                // $(this).css('color', 'blue');
+                alert('Hello World');
+            });
+            $(".hapus").on('click', function(){
+                $(this).parent().remove();
+                alert('Paris dihapus');
+            });
+            $('.hide').on('click', function(){
+                $(this).parent().fadeOut(1000);
+            });
+
+            $(".aksi").click(function(){
+                $(".sample").hide();
+            });
+            $('p.satu').css('color', 'red');
+
+            console.log("Hello World");
+            $('li').first().next().css('color', 'red');
+
+            var price = $('<p>From $399.99</p>');
+            var jogja = $('<li>Yogyakarta</li>');
+            var bali = $('<li>Bali</li>');
+            var pilih = $('<h4>Pilih Destinasi mu</h4>');
+            var makasih = $('<h3>Thank You</h3>');
+            // $('.vacation').prepend(price);
+            price.insertBefore('#destinations');
+            jogja.prependTo('#destinations');
+            bali.appendTo('#destinations');
+            pilih.insertBefore('#destinations');
+            makasih.insertAfter('#destinations');
+
+            $('.vacation').on('click', function(){
+                $(this).css('color', 'blue');
+                $('.vacation').empty();
+            });
+            // $('.vacation').html('udin');
+            $('.muncul').on('click', function(){
+                $(this).parent().slideUp(1000);
+            });
+
+            // $('.inputan').val('300');
+            console.log($('.vacation').text());
+            console.log($('.inputan').val());
+
+            $('.roma').on('click', function(){
+                $(this).css('color', 'green');
+                // $(this).empty();
+            });
+
+            $('.roma').html('<strong>Romakadut</strong>');
+
+            // $(function(){
+            //     $('.roma').remove();
+            //     $('.vacation').empty();
+            //     $('.vacation').slideUp(1000);
+            //     $('.vacation').fadeOut(1000);
+            // });
+
+        });
+    </script>
+    <!-- <h1>Where do want to go?</h1>
+    <h2>Travel Destinations</h2>
+    <p>Plan your next adventure</p>
+    <ul id="destinations">
+        <li>Rome</li>
+        <li>Paris</li>
+        <li class='promo'>Rio</li>
+    </ul>
+    <button>Aksi</button>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function()
+    {
+    $("button").click(function()
+    {
+        $(".promo").text("Bali");
+    });
+    });
+    </script> -->
+</body>
+</html>
